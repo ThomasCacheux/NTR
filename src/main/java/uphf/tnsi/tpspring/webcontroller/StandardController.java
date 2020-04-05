@@ -18,8 +18,9 @@ public class StandardController {
     OperationRepository operationRepository;
     @Autowired
     CustomerRepository customerRepository;
+
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("login", new Login());
         return "auth";
     }
@@ -27,35 +28,37 @@ public class StandardController {
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute Login login, Model model) {
         Customer customer = customerRepository.findByIdCustomer(login.getId());
-        if(customer.getPassword().equals(login.getContent())){
-            List<Operation> operations = operationRepository.findAllByIdCustomer(login.getId());
-            model.addAttribute("operations", operations);
-            model.addAttribute("customer",customer);
-            return "compteinfos";
-        }else{
+        if (customer != null) {
+            if (customer.getPassword().equals(login.getContent())) {
+                List<Operation> operations = operationRepository.findAllByIdCustomer(login.getId());
+                model.addAttribute("operations", operations);
+                model.addAttribute("customer", customer);
+                return "compteinfos";
+            }
+        }
             model.addAttribute("error", "true");
             return "auth";
-        }
-        
+
+
     }
 
     @RequestMapping("/loginFailed")
-    public String loginError(Model model){
+    public String loginError(Model model) {
         model.addAttribute("error", "true");
         return "auth";
     }
 
     @GetMapping("/compte/{id}")
-    public String compte(Model model,  @PathVariable Long id){
+    public String compte(Model model, @PathVariable Long id) {
         List<Operation> operations = operationRepository.findAllByIdCustomer(id);
         Customer customer = customerRepository.findByIdCustomer(id);
         model.addAttribute("operations", operations);
-        model.addAttribute("customer",customer);
+        model.addAttribute("customer", customer);
         return "compteinfos";
     }
 
     @GetMapping("/compte")
-    public String compte(Model model){
+    public String compte(Model model) {
         return "compteinfos";
     }
 
