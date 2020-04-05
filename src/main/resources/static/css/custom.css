@@ -1,0 +1,27 @@
+
+body {
+    background: #e2e2e2
+}
+
+.wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.form{
+    max-width: 400px;
+    padding: 15px 35px 45px;
+    margin: auto;
+    background-color: #fff;
+}
+
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;}
+
+
+
+
+

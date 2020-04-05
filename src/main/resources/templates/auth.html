@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentification</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/custom.css"/>
+</head>
+<body>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar navbar-light bg-light">
+    <img src="" width="32" height="32" alt="">
+    <a class="navbar-brand" href="/"> MyBank</a>
+
+</nav>
+<div class="wrapper">
+    <form class="form" action="loginAuth">
+        <h2 class="mt-5">Connectez-vous</h2>
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            Erreur de connexion !
+        </div>
+        <div class="form-group">
+            <label for="username">Identifiant</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Identifiant" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"
+                   required>
+        </div>
+        <button type="button" onclick="" class="btn btn-primary align-content-center">Connexion</button>
+    </form>
+</div>
+
+<script>
+
+</script>
+
+</body>
+
+
+</html>

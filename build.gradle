@@ -19,6 +19,7 @@ dependencies {
 	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.10.2'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.5.Final'
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.5.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 test {

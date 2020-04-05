@@ -10,4 +10,5 @@ import java.util.List;
 public interface OperationRepository extends CrudRepository<Operation,Long> {
     List<Operation>  findAll();
     Operation findByIdOperation(int idOperation);
+    List<Operation> findAllByIdCustomer(Long idCustomer);
 }
