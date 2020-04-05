@@ -1,4 +1,4 @@
-package uphf.tnsi.tpspring.webcontroller;
+package uphf.tnsi.tpspring.entity;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

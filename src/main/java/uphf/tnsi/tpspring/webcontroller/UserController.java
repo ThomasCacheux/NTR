@@ -5,6 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uphf.tnsi.tpspring.entity.Customer;
+import uphf.tnsi.tpspring.entity.Message;
+import uphf.tnsi.tpspring.entity.Operation;
+import uphf.tnsi.tpspring.repository.CustomerRepository;
+import uphf.tnsi.tpspring.repository.OperationRepository;
 
 @RestController
 public class UserController {

@@ -1,7 +1,8 @@
-package uphf.tnsi.tpspring.webcontroller;
+package uphf.tnsi.tpspring.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import uphf.tnsi.tpspring.entity.Customer;
 
 import java.util.List;
 
