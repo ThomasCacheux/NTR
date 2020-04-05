@@ -8,25 +8,26 @@
     <link rel="stylesheet" type="text/css" media="all" href="/static/css/custom.css"/>
 </head>
 <body>
-<nav class="navbar fixed-top navbar-expand-lg navbar navbar-light bg-light">
+
+<nav class="navbar fixed-top navbar-expand-lg navbar navbar-light bg-light position-relative">
     <img src="" width="32" height="32" alt="">
     <a class="navbar-brand" href="/"> MyBank</a>
-
 </nav>
 
-<div class="card-columns">
-    <th:block th:each="op : ${operations}">
-        <div class="card">
-            <div>
-                <p class="card-title" th:text="${op.getOperation()}"></p>
-            </div>
-        </div>
+<main role="main" class="container position-relative" >
 
-    </th:block>
-</div>
+    <div class="list-group">
+        <th:block th:each="op : ${operations}">
+
+            <p class="list-group-item" th:text="${op.getOperation()}"></p>
+
+
+        </th:block>
+    </div>
+
+</main>
 
 </body>
-
 
 
 </html>
