@@ -15,7 +15,12 @@
 </nav>
 
 <main role="main" class="container position-relative" >
-
+    <div>
+        <p>Bonjour <b th:text="${customer.getName()}"></b>  Votre Solde est de  : <b th:text="${customer.getSolde()}"></b> € </p>
+    </div>
+    <div>
+        <p> Voici les opérations effectuées </p>
+    </div>
     <div class="list-group">
         <th:block th:each="op : ${operations}">
 
