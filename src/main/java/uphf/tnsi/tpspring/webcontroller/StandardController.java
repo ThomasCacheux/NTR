@@ -3,11 +3,9 @@ package uphf.tnsi.tpspring.webcontroller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import uphf.tnsi.tpspring.entity.Customer;
+import uphf.tnsi.tpspring.entity.Login;
 import uphf.tnsi.tpspring.entity.Operation;
 import uphf.tnsi.tpspring.repository.CustomerRepository;
 import uphf.tnsi.tpspring.repository.OperationRepository;
@@ -20,10 +18,25 @@ public class StandardController {
     OperationRepository operationRepository;
     @Autowired
     CustomerRepository customerRepository;
-
     @GetMapping("/login")
     public String login(Model model){
+        model.addAttribute("login", new Login());
         return "auth";
+    }
+
+    @PostMapping("/login")
+    public String loginSubmit(@ModelAttribute Login login, Model model) {
+        Customer customer = customerRepository.findByIdCustomer(login.getId());
+        if(customer.getPassword().equals(login.getContent())){
+            List<Operation> operations = operationRepository.findAllByIdCustomer(login.getId());
+            model.addAttribute("operations", operations);
+            model.addAttribute("customer",customer);
+            return "compteinfos";
+        }else{
+            model.addAttribute("error", "true");
+            return "auth";
+        }
+        
     }
 
     @RequestMapping("/loginFailed")
@@ -45,4 +58,6 @@ public class StandardController {
     public String compte(Model model){
         return "compteinfos";
     }
+
+
 }
