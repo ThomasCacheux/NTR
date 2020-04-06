@@ -44,7 +44,7 @@ public class UserController {
         Customer customer = customerRepository.findByIdCustomer(debiter.getIdCompte());
         customer.setSolde(customer.getSolde() - debiter.getMontant());
         customerRepository.save(customer);
-        Operation operation = new Operation(("-" + debiter.getMontant()),debiter.getIdCompte());
+        Operation operation = new Operation(("- " + debiter.getMontant()),debiter.getIdCompte());
         operationRepository.save(operation);
         Message message = new Message(("Debit effectué sur " + debiter.getIdCompte() + " Solde : " + customer.getSolde()), true);
         return new ResponseEntity<>(message, HttpStatus.OK);
