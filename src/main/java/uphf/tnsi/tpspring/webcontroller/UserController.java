@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uphf.tnsi.tpspring.entity.Customer;
+import uphf.tnsi.tpspring.entity.Information;
 import uphf.tnsi.tpspring.entity.Message;
 import uphf.tnsi.tpspring.entity.Operation;
 import uphf.tnsi.tpspring.repository.CustomerRepository;

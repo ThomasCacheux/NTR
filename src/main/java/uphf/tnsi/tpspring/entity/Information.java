@@ -1,9 +1,9 @@
-package uphf.tnsi.tpspring.webcontroller;
+package uphf.tnsi.tpspring.entity;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-class Information {
+public class Information {
     private Long idCompte;
     private double montant;
 
