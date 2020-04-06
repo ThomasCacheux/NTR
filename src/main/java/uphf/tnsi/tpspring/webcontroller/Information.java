@@ -12,6 +12,9 @@ class Information {
         this.montant = montant;
     }
 
+    public Information() {
+    }
+
     public Long getIdCompte() {
         return idCompte;
     }
