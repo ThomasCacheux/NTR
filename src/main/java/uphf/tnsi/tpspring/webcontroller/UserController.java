@@ -11,7 +11,6 @@ import uphf.tnsi.tpspring.repository.OperationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController {
