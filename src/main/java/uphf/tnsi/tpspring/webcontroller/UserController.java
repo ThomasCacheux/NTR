@@ -19,8 +19,17 @@ public class UserController {
     @Autowired
     OperationRepository operationRepository;
 
-    @GetMapping(value = "/getSolde/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> getSolde(@PathVariable Long id) {
+    @GetMapping(value = "/getSolde/{idCustomer}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> getSolde(@PathVariable String idCustomer) {
+        Long id = Long.valueOf(0);
+        try{
+            id = Long.parseLong(idCustomer);
+        }catch (Exception e){
+
+            Response message = new Response(null," id user invalid", false);
+            return  new ResponseEntity<Response>(message, HttpStatus.NOT_FOUND);
+        }
+
         Customer customer = customerRepository.findByIdCustomer(id);
         if(customer != null){
             ArrayList list = new ArrayList();
@@ -34,8 +43,17 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "/getOp/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> getOp(@PathVariable Long id) {
+    @GetMapping(value = "/getOp/{idCustomer}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> getOp(@PathVariable String idCustomer) {
+        Long id = Long.valueOf(0);
+        try{
+            id = Long.parseLong(idCustomer);
+        }catch (Exception e){
+
+            Response message = new Response(null," id user invalid", false);
+            return  new ResponseEntity<Response>(message, HttpStatus.NOT_FOUND);
+        }
+
         Customer customer = customerRepository.findByIdCustomer(id);
         if(customer != null){
             List<Operation> operationArrayList = operationRepository.findAllByIdCustomer(id);
@@ -53,11 +71,22 @@ public class UserController {
             , produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Message> crediter(
             @RequestBody Information crediter) {
-        Customer customer = customerRepository.findByIdCustomer(crediter.getIdCompte());
+        Long id = Long.valueOf(0);
+        double montant = 0.0;
+        try{
+            id = Long.parseLong(crediter.getIdCompte());
+            montant = Double.parseDouble(crediter.getMontant());
+        }catch (Exception e){
+
+            Message message = new Message(" montant or id user invalid", false);
+            return  new ResponseEntity<Message>(message, HttpStatus.NOT_FOUND);
+        }
+
+        Customer customer = customerRepository.findByIdCustomer(id);
         if (customer != null) {
-            customer.setSolde(customer.getSolde() + crediter.getMontant());
+            customer.setSolde(customer.getSolde() + montant);
             customerRepository.save(customer);
-            Operation operation = new Operation(("+ " + crediter.getMontant()), crediter.getIdCompte());
+            Operation operation = new Operation(("+ " + montant), id);
             operationRepository.save(operation);
             Message message = new Message(("Credit effectué sur " + crediter.getIdCompte() + " Solde : " + customer.getSolde()), true);
             return new ResponseEntity<>(message, HttpStatus.OK);
@@ -72,11 +101,21 @@ public class UserController {
             , produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Message> debiter(
             @RequestBody Information debiter) {
-        Customer customer = customerRepository.findByIdCustomer(debiter.getIdCompte());
+        Long id = Long.valueOf(0);
+        double montant = 0.0;
+        try{
+            id = Long.parseLong(debiter.getIdCompte());
+            montant = Double.parseDouble(debiter.getMontant());
+        }catch (Exception e){
+
+            Message message = new Message(" montant or id user invalid", false);
+            return  new ResponseEntity<Message>(message, HttpStatus.NOT_FOUND);
+        }
+        Customer customer = customerRepository.findByIdCustomer(id);
         if (customer != null) {
-            customer.setSolde(customer.getSolde() - debiter.getMontant());
+            customer.setSolde(customer.getSolde() - montant);
             customerRepository.save(customer);
-            Operation operation = new Operation(("- " + debiter.getMontant()), debiter.getIdCompte());
+            Operation operation = new Operation(("- " + montant), id);
             operationRepository.save(operation);
             Message message = new Message(("Debit effectué sur " + debiter.getIdCompte() + " Solde : " + customer.getSolde()), true);
             return new ResponseEntity<>(message, HttpStatus.OK);
