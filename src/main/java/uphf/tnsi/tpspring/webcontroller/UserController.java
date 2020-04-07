@@ -31,7 +31,7 @@ public class UserController {
 
         }else{
             Response message = new Response(null,id.toString()+" user invalid", false);
-            return  new ResponseEntity<Response>(message, HttpStatus.OK);
+            return  new ResponseEntity<Response>(message, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -45,7 +45,7 @@ public class UserController {
 
         }else{
             Response message = new Response(null,id.toString()+" user invalid", false);
-            return  new ResponseEntity<Response>(message, HttpStatus.OK);
+            return  new ResponseEntity<Response>(message, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -65,7 +65,7 @@ public class UserController {
 
         } else {
             Message message = new Message(("Invalid customer"), false);
-            return new ResponseEntity<>(message, HttpStatus.OK);
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -83,21 +83,10 @@ public class UserController {
             return new ResponseEntity<>(message, HttpStatus.OK);
         } else {
             Message message = new Message(("Invalid customer"), false);
-            return new ResponseEntity<>(message, HttpStatus.OK);
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
     }
 
 
-    //Tests
-
-
-    @RequestMapping(value = "/testp", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE}
-            , produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Message> testPerson(
-            @RequestBody Information crediter) {
-        System.out.println(crediter.toString());
-        Message test = new Message("test", true);
-        return new ResponseEntity<>(test, HttpStatus.OK);
-    }
 
 }
