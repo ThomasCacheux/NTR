@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Main {
+public class MainTest {
 
     public static void main(String[] args){
         long accountNumber = 1;
